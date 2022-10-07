@@ -18,7 +18,7 @@ Provides the server-side functionality for the Notes app. Application uses Expre
 
 ## API
 
-`HTTP POST` `/user` `{"username": <username>, "password": <password>}` - Create new user
+`HTTP POST` `/users` `{"username": <username>, "password": <password>}` - Create new user
 
 `HTTP POST` `/login` `{"username": <username>, "password": <password>}` - Login with credentials and set a token as cookie
 

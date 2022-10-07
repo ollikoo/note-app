@@ -19,6 +19,6 @@ A TODO list application that can be restarted.
 
 3. Copy `.env.example` file and name it as `.env` and then paste the generated token as value of `TOKEN_SECRET`.
 
-4. To build and start containers, run `docker-compose --env-file ./backend/.env up`. Applications will start and the UI is available at [http://localhost:3000](http://localhost:3000).
+4. To build and start containers, run `docker-compose --env-file ./backend/.env up` in the root directory. Applications will start and the UI is available at [http://localhost:3000](http://localhost:3000).
 
 5. RedisInsight GUI is available at [http://localhost:8001](http://localhost:8001).

@@ -15,7 +15,7 @@ A TODO list application that can be restarted.
 
 1. Download and install Docker and node.js.
 
-2. To generate a secret token, run `npm run generate-secret` in the `backend` directory and copy the generated token.
+2. To generate a secret token, navigate to `backend` directory and run `npm run generate-secret` and then copy the generated token.
 
 3. Copy `.env.example` file and name it as `.env` and then paste the generated token as value of `TOKEN_SECRET`.
 

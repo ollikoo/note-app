@@ -49,8 +49,8 @@ app.post("/users", async (req, res) => {
       }
 
       // Check if user already exists
-      const userName = await client.hGetAll(`user:${username}`);
-      if (userName.username === username) {
+      const user = await client.hGetAll(`user:${username}`);
+      if (user) {
         return res.status(409).send({
           error: true,
           message: "User already exists",
@@ -196,6 +196,25 @@ app.get(
     try {
       const username = req.username;
       const notes = await client.sMembers("note:index");
+
+      // if (
+      //   typeof firstRes === "number" &&
+      //   typeof secondRes === "number"
+      // ) {
+      //   const notes = await client.sMembers("note:index");
+      //   const result: Note[] = (await Promise.all(
+      //     notes.map((noteId: string) => client.hGetAll(noteId))
+      //   )) as Note[];
+      //   return res
+      //     .status(201)
+      //     .send({
+      //       message: "Note created",
+      //       updated: result.filter(
+      //         (note: Note) => note.username === username
+      //       ),
+      //     });
+      // }
+
       const result: any = Promise.all(
         notes.map((noteId: string) => client.hGetAll(noteId))
       );

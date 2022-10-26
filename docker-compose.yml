@@ -9,7 +9,7 @@ services:
     ports:
       - 4001:8081
     environment:
-      - ENV PORT=8081
+      - PORT=8081
       - REDIS_HOST=redis-server
       - REDIS_PORT=6379
       - TOKEN_EXPIRATION_TIME=24h

@@ -50,7 +50,8 @@ app.post("/users", async (req, res) => {
 
       // Check if user already exists
       const user = await client.hGetAll(`user:${username}`);
-      if (user) {
+
+      if (user.username) {
         return res.status(409).send({
           error: true,
           message: "User already exists",
@@ -83,7 +84,8 @@ app.post("/users", async (req, res) => {
       if (
         typeof firstRes === "number" &&
         typeof secondRes === "number" &&
-        typeof thirdRes === "number"
+        typeof thirdRes === "number" &&
+        saveRes
       ) {
         return res.status(201).send({
           message: "User created",
@@ -106,25 +108,32 @@ app.post("/login", async (req: UserAuthRequest, res: Response) => {
 
   const user = await client.hGetAll(`user:${username}`);
 
-  const validatedPassword = await compare(password, user.password);
+  if (user.username) {
+    const validatedPassword = await compare(password, user.password);
 
-  if (!user.username || !validatedPassword) {
+    if (!validatedPassword) {
+      return res.status(401).send({
+        error: true,
+        message: "Invalid login credentials",
+      });
+    }
+
+    // Generate token for user
+    const token = generateToken(username as string);
+
+    return res
+      .cookie("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+      })
+      .status(200)
+      .json({ message: "Logged in" });
+  } else {
     return res.status(401).send({
       error: true,
       message: "Invalid login credentials",
     });
   }
-
-  // Generate token for user
-  const token = generateToken(username as string);
-
-  return res
-    .cookie("access_token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-    })
-    .status(200)
-    .json({ message: "Logged in" });
 });
 
 // Endpoint for logout
@@ -163,7 +172,11 @@ app.post(
           .bgSave()
           .exec();
 
-        if (typeof firstRes === "number" && typeof secondRes === "number") {
+        if (
+          typeof firstRes === "number" &&
+          typeof secondRes === "number" &&
+          saveRes
+        ) {
           const notes = await client.sMembers("note:index");
           const result: any = Promise.all(
             notes.map((noteId: string) => client.hGetAll(noteId))
@@ -197,27 +210,10 @@ app.get(
       const username = req.username;
       const notes = await client.sMembers("note:index");
 
-      // if (
-      //   typeof firstRes === "number" &&
-      //   typeof secondRes === "number"
-      // ) {
-      //   const notes = await client.sMembers("note:index");
-      //   const result: Note[] = (await Promise.all(
-      //     notes.map((noteId: string) => client.hGetAll(noteId))
-      //   )) as Note[];
-      //   return res
-      //     .status(201)
-      //     .send({
-      //       message: "Note created",
-      //       updated: result.filter(
-      //         (note: Note) => note.username === username
-      //       ),
-      //     });
-      // }
-
       const result: any = Promise.all(
         notes.map((noteId: string) => client.hGetAll(noteId))
       );
+
       result.then((result: any) => {
         return res.status(200).send({
           notes: result?.filter((note: Note) => note.username === username),
@@ -284,7 +280,11 @@ app.delete(
           .bgSave()
           .exec();
 
-        if (typeof firstRes === "number" && typeof secondRes === "number") {
+        if (
+          typeof firstRes === "number" &&
+          typeof secondRes === "number" &&
+          saveRes
+        ) {
           const username = req.username;
           const notes = await client.sMembers("note:index");
           const result: any = Promise.all(

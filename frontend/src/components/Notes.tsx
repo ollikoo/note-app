@@ -34,24 +34,22 @@ const Notes = ({ setError, setSuccess }: NoteProps) => {
   const [newNote, setNewNote] = React.useState<string>("");
 
   const getNotes = React.useCallback(async () => {
-    setIsLoading(true);
-    await axios
-      .get(`${process.env.REACT_APP_API_URL}/notes`)
-      .then((response) => {
-        if (response.data) {
-          if (response?.status === 200) {
-            setIsLoggedIn(true);
-            setNotes(response.data.notes);
-            setTimeout(() => setIsLoading(false), 1500);
-          }
-        }
-      })
-      .catch((err: any) => {
-        console.log("Error getting notes:", err);
-        setNotes([]);
-        setIsLoggedIn(false);
+    try {
+      setIsLoading(true);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/notes`
+      );
+      if (response?.status === 200) {
+        setIsLoggedIn(true);
+        setNotes(response.data.notes);
         setTimeout(() => setIsLoading(false), 1500);
-      });
+      }
+    } catch (err: any) {
+      console.log("Error getting notes:", err);
+      setNotes([]);
+      setIsLoggedIn(false);
+      setTimeout(() => setIsLoading(false), 1500);
+    }
   }, []);
 
   React.useEffect(() => {

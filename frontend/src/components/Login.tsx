@@ -21,48 +21,47 @@ const Login = ({ setIsLoggedIn, setError, setSuccess }: LoginProps) => {
 
   const handleLogin = React.useCallback(
     async (username: string, password: string) => {
-      await axios
-        .post(`${process.env.REACT_APP_API_URL}/login`, { username, password })
-        .then((response) => {
-          console.log("response:", response);
-          if (response?.status === 200) {
-            setIsLoggedIn(true);
-            setUsername("");
-            setPassword("");
-          }
-        })
-        .catch((err: any) => {
-          console.log("Login error:", err);
-          if (err?.response?.data?.message) setError(err.response.data.message);
-          else if (err?.message) setError(err?.message);
-        });
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/login`,
+          { username, password }
+        );
+
+        if (response?.status === 200) {
+          setIsLoggedIn(true);
+          setUsername("");
+          setPassword("");
+        }
+      } catch (err: any) {
+        console.log("Login error:", err);
+        if (err?.response?.data?.message) setError(err.response.data.message);
+        else if (err?.message) setError(err?.message);
+      }
     },
     [setError, setIsLoggedIn]
   );
 
   const handleRegister = React.useCallback(
     async (usr: string, pwd: string) => {
-      await axios
-        .post(
+      try {
+        const response = await axios.post(
           `${process.env.REACT_APP_API_URL}/users`,
           {
             username: usr,
             password: pwd,
           },
           { withCredentials: false }
-        )
-        .then((response) => {
-          if (response?.status === 201) {
-            setSuccess(response.data.message);
-            setRegUsername("");
-            setRegPassword("");
-          }
-        })
-        .catch((err: any) => {
-          console.log("Register error:", err);
-          if (err?.response?.data?.message) setError(err.response.data.message);
-          else if (err?.message) setError(err?.message);
-        });
+        );
+        if (response?.status === 201) {
+          setSuccess(response.data.message);
+          setRegUsername("");
+          setRegPassword("");
+        }
+      } catch (err: any) {
+        console.log("Register error:", err);
+        if (err?.response?.data?.message) setError(err.response.data.message);
+        else if (err?.message) setError(err?.message);
+      }
     },
     [setError, setSuccess]
   );

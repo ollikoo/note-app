@@ -9,53 +9,6 @@ type NoteListProps = {
   deleteNote: any;
 };
 
-const Wrapper = styled.div`
-  margin-bottom: 32px;
-
-  [class*="Checkbox"] {
-    flex-shrink: 0;
-    position: absolute;
-    top: 8px;
-  }
-
-  input[type*="checkbox"] {
-    top: 8px;
-  }
-
-  [class*="LabelText"] {
-    margin-left: 32px;
-  }
-
-  .note-wrap {
-    display: flex;
-    flex-direction: column;
-    padding: 16px 0;
-
-    h3 {
-      font-size: 16px;
-      font-weight: bold;
-      position: absolute;
-    }
-
-    p {
-      margin-left: 32px;
-    }
-
-    .buttons {
-      margin-top: 16px;
-      margin-left: 32px;
-
-      button {
-        margin-right: 8px;
-      }
-    }
-
-    .note-divider {
-      margin-top: 16px;
-    }
-  }
-`;
-
 const NoteList = ({ notes, updateNote, deleteNote }: NoteListProps) => {
   const [tab, setTab] = React.useState<number>(0);
 
@@ -110,3 +63,50 @@ const NoteList = ({ notes, updateNote, deleteNote }: NoteListProps) => {
 };
 
 export default NoteList;
+
+const Wrapper = styled.div`
+  margin-bottom: 32px;
+
+  [class*="Checkbox"] {
+    flex-shrink: 0;
+    position: absolute;
+    top: 8px;
+  }
+
+  input[type*="checkbox"] {
+    top: 8px;
+  }
+
+  [class*="LabelText"] {
+    margin-left: 32px;
+  }
+
+  .note-wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+
+    h3 {
+      font-size: 16px;
+      font-weight: bold;
+      position: absolute;
+    }
+
+    p {
+      margin-left: 32px;
+    }
+
+    .buttons {
+      margin-top: 16px;
+      margin-left: 32px;
+
+      button {
+        margin-right: 8px;
+      }
+    }
+
+    .note-divider {
+      margin-top: 16px;
+    }
+  }
+`;

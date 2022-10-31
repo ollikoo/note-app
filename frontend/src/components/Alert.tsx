@@ -11,6 +11,50 @@ type AlertProps = {
   type: "error" | "warning" | "success";
 };
 
+const Alert = ({ content, dismiss, type }: AlertProps) => {
+  return (
+    <Wrapper>
+      <Window className="alert-window">
+        <WindowHeader className="window-header">
+          <span>
+            {type === "error" && "Error"}
+            {type === "warning" && "Warning"}
+            {type === "success" && "Notification"}
+          </span>
+          <Button className="close-button" onClick={dismiss}>
+            <span className="close-icon" />
+          </Button>
+        </WindowHeader>
+        <WindowContent>
+          <div className="window-wrap">
+            <div>
+              <span>
+                {type === "error" && (
+                  <img className="alert-icon" src={errorIMG} alt="" />
+                )}
+                {type === "warning" && (
+                  <img className="alert-icon" src={warningIMG} alt="" />
+                )}
+                {type === "success" && (
+                  <img className="alert-icon" src={successIMG} alt="" />
+                )}
+              </span>
+            </div>
+            <div>
+              {content}
+              <Button className="dismiss" onClick={dismiss}>
+                OK
+              </Button>
+            </div>
+          </div>
+        </WindowContent>
+      </Window>
+    </Wrapper>
+  );
+};
+
+export default Alert;
+
 const Wrapper = styled.div`
   position: absolute;
   left: 50%;
@@ -86,47 +130,3 @@ const Wrapper = styled.div`
     margin-top: 32px;
   }
 `;
-
-const Alert = ({ content, dismiss, type }: AlertProps) => {
-  return (
-    <Wrapper>
-      <Window className="alert-window">
-        <WindowHeader className="window-header">
-          <span>
-            {type === "error" && "Error"}
-            {type === "warning" && "Warning"}
-            {type === "success" && "Notification"}
-          </span>
-          <Button className="close-button" onClick={dismiss}>
-            <span className="close-icon" />
-          </Button>
-        </WindowHeader>
-        <WindowContent>
-          <div className="window-wrap">
-            <div>
-              <span>
-                {type === "error" && (
-                  <img className="alert-icon" src={errorIMG} alt="" />
-                )}
-                {type === "warning" && (
-                  <img className="alert-icon" src={warningIMG} alt="" />
-                )}
-                {type === "success" && (
-                  <img className="alert-icon" src={successIMG} alt="" />
-                )}
-              </span>
-            </div>
-            <div>
-              {content}
-              <Button className="dismiss" onClick={dismiss}>
-                OK
-              </Button>
-            </div>
-          </div>
-        </WindowContent>
-      </Window>
-    </Wrapper>
-  );
-};
-
-export default Alert;

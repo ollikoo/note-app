@@ -12,108 +12,6 @@ type LoginProps = {
   setSuccess: any;
 };
 
-const Wrapper = styled.div`
-  .hero {
-    width: 100%;
-    height: 100px;
-    margin-left: -16px;
-    background-image: url(${heroIMG});
-    background-repeat: no-repeat;
-    margin-top: -16px;
-    margin-bottom: 32px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 16px;
-
-    h1 {
-      font-size: 38px;
-      color: #fff;
-      font-weight: 400;
-    }
-  }
-
-  .login-wrap {
-    display: flex;
-    flex-direction: column;
-    align-item: center;
-
-    @media screen and (min-width: 550px) {
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-
-  img {
-    width: 64px;
-    height: auto;
-    margin-right: 32px;
-    margin-bottom: 16px;
-
-    @media screen and (min-width: 550px) {
-      margin-bottom: 0;
-    }
-  }
-
-  .login {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .text-field-wrap {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-bottom: 8px;
-
-    @media screen and (min-width: 550px) {
-      flex-direction: row;
-      align-items: center;
-    }
-
-    &:last-of-type {
-      margin-top: 8px;
-    }
-  }
-
-  .text-field {
-    margin-left: 0px;
-    margin-right: 8px;
-
-    @media screen and (min-width: 550px) {
-      margin-left: 8px;
-    }
-  }
-
-  .button-wrap {
-    display: flex;
-  }
-
-  .login-title {
-    margin-bottom: 16px;
-
-    @media screen and (min-width: 550px) {
-      margin-bottom: 32px;
-    }
-  }
-
-  .submit {
-    width: 132px;
-    margin-top: 32px;
-
-    @media screen and (min-width: 550px) {
-      margin-top: 0;
-    }
-  }
-
-  .submit-wrap {
-    margin-top: 16px;
-  }
-`;
-
 const Login = ({ setIsLoggedIn, setError, setSuccess }: LoginProps) => {
   const [username, setUsername] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
@@ -263,3 +161,105 @@ const Login = ({ setIsLoggedIn, setError, setSuccess }: LoginProps) => {
 };
 
 export default Login;
+
+const Wrapper = styled.div`
+  .hero {
+    width: 100%;
+    height: 100px;
+    margin-left: -16px;
+    background-image: url(${heroIMG});
+    background-repeat: no-repeat;
+    margin-top: -16px;
+    margin-bottom: 32px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px;
+
+    h1 {
+      font-size: 38px;
+      color: #fff;
+      font-weight: 400;
+    }
+  }
+
+  .login-wrap {
+    display: flex;
+    flex-direction: column;
+    align-item: center;
+
+    @media screen and (min-width: 550px) {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  img {
+    width: 64px;
+    height: auto;
+    margin-right: 32px;
+    margin-bottom: 16px;
+
+    @media screen and (min-width: 550px) {
+      margin-bottom: 0;
+    }
+  }
+
+  .login {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .text-field-wrap {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 8px;
+
+    @media screen and (min-width: 550px) {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    &:last-of-type {
+      margin-top: 8px;
+    }
+  }
+
+  .text-field {
+    margin-left: 0px;
+    margin-right: 8px;
+
+    @media screen and (min-width: 550px) {
+      margin-left: 8px;
+    }
+  }
+
+  .button-wrap {
+    display: flex;
+  }
+
+  .login-title {
+    margin-bottom: 16px;
+
+    @media screen and (min-width: 550px) {
+      margin-bottom: 32px;
+    }
+  }
+
+  .submit {
+    width: 132px;
+    margin-top: 32px;
+
+    @media screen and (min-width: 550px) {
+      margin-top: 0;
+    }
+  }
+
+  .submit-wrap {
+    margin-top: 16px;
+  }
+`;

@@ -8,7 +8,7 @@ A TODO list application that can be restarted.
 
 ### Dockerized applications with modern tech stack and retro-ish UI components
 
-- A frontend with React, Typescript, Sass, Styled Components and React95
+- A frontend with React, Typescript, Styled Components and React95
 - A backend with Node.js, Typescript, Express.js, Redis and JWT authentication
 
 ## To run application in Docker

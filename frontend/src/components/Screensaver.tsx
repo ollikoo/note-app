@@ -2,21 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import video from "../assets/screensaver.mp4";
 
-const Wrapper = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #000000;
-  pointer-events: none;
-
-  video {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
 const Screensaver = () => {
   const [isActive, setIsActive] = React.useState<boolean>(false);
   const [count, setCount] = React.useState<number>(0);
@@ -64,3 +49,18 @@ const Screensaver = () => {
 };
 
 export default Screensaver;
+
+const Wrapper = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  pointer-events: none;
+
+  video {
+    width: 100%;
+    height: 100%;
+  }
+`;

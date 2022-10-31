@@ -16,109 +16,6 @@ import NoteList from "./NoteList";
 import { Resizable } from "react-resizable";
 import Draggable from "react-draggable";
 
-const Wrapper = styled.div`
-  .react-resizable {
-    position: fixed;
-    max-height: calc(100vh - 48px);
-    max-width: 100vw;
-    overflow: hidden;
-  }
-
-  .window {
-    max-height: calc(100vh - 48px);
-    width: 100%;
-    height: 100%;
-    max-width: 100vw;
-    overflow; hidden;
-    position: relative;
-  }
-
-  .window-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: 
-  }
-
-  .window-title {
-    width: 100%;
-  }
-
-  .close-button {
-    top: 2px;
-  }
-
-  .close-icon {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-left: -1px;
-    margin-top: -1px;
-    transform: rotateZ(45deg);
-    position: relative;
-
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      background: ${({ theme }) => theme.materialText};
-    }
-    &:before {
-      height: 100%;
-      width: 3px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    &:after {
-      height: 3px;
-      width: 100%;
-      left: 0px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-
-  .window-content {
-    overflow-y: scroll;
-  }
-
-  .resize-handle {
-    border: 1px solid black;
-    width: 6px;
-    height: 149px;
-    position: absolute;
-    right: 1px;
-    bottom: -62px;
-    cursor: nwse-resize;
-    transform: rotate(45deg);
-  }
-
-  .loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-
-   .new-note-wrap {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    p {
-      margin-bottom: 8px;
-    }
-
-    .buttons {
-      display: flex;
-      margin-top: 16px;
-      justify-content: space-between;
-      
-      button {}
-    }
-  }
-`;
-
 type NoteProps = {
   setError: any;
   setSuccess: any;
@@ -334,3 +231,106 @@ const Notes = ({ setError, setSuccess }: NoteProps) => {
 };
 
 export default Notes;
+
+const Wrapper = styled.div`
+  .react-resizable {
+    position: fixed;
+    max-height: calc(100vh - 48px);
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .window {
+    max-height: calc(100vh - 48px);
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    overflow; hidden;
+    position: relative;
+  }
+
+  .window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: 
+  }
+
+  .window-title {
+    width: 100%;
+  }
+
+  .close-button {
+    top: 2px;
+  }
+
+  .close-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: -1px;
+    margin-top: -1px;
+    transform: rotateZ(45deg);
+    position: relative;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      background: ${({ theme }) => theme.materialText};
+    }
+    &:before {
+      height: 100%;
+      width: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &:after {
+      height: 3px;
+      width: 100%;
+      left: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .window-content {
+    overflow-y: scroll;
+  }
+
+  .resize-handle {
+    border: 1px solid black;
+    width: 6px;
+    height: 149px;
+    position: absolute;
+    right: 1px;
+    bottom: -62px;
+    cursor: nwse-resize;
+    transform: rotate(45deg);
+  }
+
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+   .new-note-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-bottom: 8px;
+    }
+
+    .buttons {
+      display: flex;
+      margin-top: 16px;
+      justify-content: space-between;
+      
+      button {}
+    }
+  }
+`;
